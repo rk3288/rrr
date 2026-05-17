@@ -1,0 +1,15 @@
+name: 免费全球SSH终端(快速版无清理环境)未配置安卓编译环境
+on:
+  workflow_dispatch:
+
+jobs:
+  debug:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 360
+    steps:
+      - name: 拉取源码
+        uses: actions/checkout@v4
+
+      - name: 安装并启动 SSHX（全球免费终端）
+        run: |
+          curl -sSf https://sshx.io/get | sh -s run
