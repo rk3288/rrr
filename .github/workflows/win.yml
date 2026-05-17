@@ -1,0 +1,22 @@
+name: RustDesk云端应急电脑
+on:
+  workflow_dispatch:
+jobs:
+  win-cloud:
+    runs-on: windows-latest
+    steps:
+      - name: 安装RustDesk远程工具
+        run: |
+          winget install RustDesk.RustDesk --silent --force
+          Start-Sleep 8
+          Start-Process "C:\Program Files\RustDesk\RustDesk.exe"
+      
+      - name: 输出连接信息
+        run: |
+          Start-Sleep 15
+          Write-Host "===远程连接信息==="
+          rustdesk --get-id
+          rustdesk --get-passwd
+      
+      - name: 保持实例不退出
+        run: while($true){Start-Sleep 60}
